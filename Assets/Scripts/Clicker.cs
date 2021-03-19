@@ -85,14 +85,17 @@ public class Clicker : MonoBehaviour
     private void FixedUpdate()
     {
         points += pointsIncreasedPerSecond * Time.deltaTime;
+        //if the player has any passive point upgrades, it will increase the score over time
         UpdateUI();
         increasePointsPerClick = maxIncreasePointsPerClick;
+        //sets the value that upgrades the click 
         timer += Time.deltaTime;
         if (timer > 20)
         { timer -= 20;
             string randomSass = playerSass[Random.Range(0, playerSass.Length)];
             sassDisplay.text = randomSass;
         }
+        //displays random message after the timer reaches 20
     }
     public void Update()
     {
@@ -100,6 +103,7 @@ public class Clicker : MonoBehaviour
         {
             techNuke.SetActive(true);
         }
+        //checks if the player's score is high enough and if so enables the final "upgrade
     }
     #region Scores
     public void IncreaseScore()
@@ -136,6 +140,7 @@ public class Clicker : MonoBehaviour
     {
         upgradeText3.text = costToUpgrade[2] + " Points";
     }
+    //updates all the text to reflect the updated value after points are added and removed
     #endregion
     #region Purchase Upgrades
     public void AutomaticClicker()
@@ -151,10 +156,12 @@ public class Clicker : MonoBehaviour
             UpdateUpgradeDisplay2();
             superiorDialogue.text = purchaseText[0];
         }
+        //purchases upgrade if points are high enough, displays purchase message
         else
         {
             superiorDialogue.text = purchaseText[1];
         }
+        //shows error trying to purchase
     }
     public void UpgradePointsPerClick()
     {
@@ -199,6 +206,7 @@ public class Clicker : MonoBehaviour
         {
             worldHack.SetActive(true);
         }
+        //activates the "endgame" 
     }
     #endregion
     public void ObjectiveDialogue()
@@ -209,5 +217,6 @@ public class Clicker : MonoBehaviour
     public void ReloadLevel()
     {
         SceneManager.LoadScene(0);
+        //resets the game
     }
 }
